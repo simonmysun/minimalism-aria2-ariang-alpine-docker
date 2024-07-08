@@ -24,7 +24,7 @@ RUN wget --no-check-certificate https://github.com/mayswind/AriaNg/releases/down
   && rm ariang.zip \
   && chmod -R 755 ./
 
-RUN while true ; do nc -l -p 1500 -c 'echo -e "HTTP/1.1 200 OK\n\n $(cat index.html)"'; done &
+RUN while true; do (echo -e 'HTTP/1.1 200 OK\n\n'; cat index.html) | nc -l -p 6880; done &
 
 EXPOSE 6880
 EXPOSE 6800
