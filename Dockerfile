@@ -27,6 +27,7 @@ RUN wget --no-check-certificate https://github.com/mayswind/AriaNg/releases/down
 RUN while true ; do nc -l -p 1500 -c 'echo -e "HTTP/1.1 200 OK\n\n $(cat index.html)"'; done &
 
 EXPOSE 6880
+EXPOSE 6800
 
 ENTRYPOINT ["aria2c"]
 
