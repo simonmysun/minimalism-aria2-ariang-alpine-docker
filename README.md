@@ -1,8 +1,6 @@
 # maaad
 
-## Description
-
-This is a minimalistic setup for running Aria2 with AriaNg in an Alpine Docker container.
+Minimalism Aria2 AriaNg Alpine Docker
 
 ## Deployment
 
@@ -22,18 +20,18 @@ Then:
 
 ### without docker-compose
 
-Run `docker build -t https://github.com/simonmysun/minimalism-aria2-ariang-alpine-docker.git`
+Run `docker build -t maaad https://github.com/simonmysun/minimalism-aria2-ariang-alpine-docker.git`
 
 __Or__ clone and build the image manually:
 
 1. Clone the repository: `git clone https://github.com/simonmysun/minimalism-aria2-ariang-alpine-docker.git`
 2. Navigate to the project directory: `cd minimalism-aria2-ariang-alpine-docker`
-3. Build the Docker image: `docker build -t minimalism-aria2-ariang-alpine-docker .`
+3. Build the Docker image: `docker build -t maaad .`
 
 Then:
 
 1. Modify `config/aria2.conf` to your liking.
-2. Run the Docker container: `docker run -d -p 6800:6800 -p 6880:6880 -v /path-to-downloads:/downloads -v /path-to-config:/aria2/config minimalism-aria2-ariang-alpine-docker`
+2. Run the Docker container: `docker run -d -p 6800:6800 -p 6880:6880 -v /path-to-downloads:/downloads -v /path-to-config:/aria2/config maaad`
 
 ## Usage
 

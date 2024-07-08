@@ -1,8 +1,8 @@
-name: aria2-kit
+name: maaad
 
 services:
-  aria2-ariang:
-    container_name: aria2-ariang
+  maaad:
+    container_name: maaad
     build: .
     volumes:
       - ./config/:/aria2/config/
