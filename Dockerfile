@@ -12,9 +12,12 @@ LABEL maintainer="simonmysun" \
   org.label-schema.vendor="simonmysun" \
   org.label-schema.schema-version="1.0"
 
-RUN apk add --no-cache aria2
-
 WORKDIR /aria2/
+
+EXPOSE 6880
+EXPOSE 6800
+
+RUN apk add --no-cache aria2
 
 ARG ARIANG_VERSION=1.3.7
 
@@ -24,12 +27,6 @@ RUN wget --no-check-certificate https://github.com/mayswind/AriaNg/releases/down
   && rm ariang.zip \
   && chmod -R 755 ./
 
-RUN while true; do (echo -e 'HTTP/1.1 200 OK\n\n'; cat index.html) | nc -l -p 6880; done &
+RUN echo -e '#!/bin/sh\n\nwhile true; do (echo -e "HTTP/1.1 200 OK\\n\\n"; cat index.html) | nc -l -p 6880; done & aria2c --conf-path=/aria2/config/aria2.conf & wait -n; echo FAIL; exit 1' > /aria2/start.sh && chmod +x /aria2/start.sh
 
-EXPOSE 6880
-EXPOSE 6800
-
-ENTRYPOINT ["aria2c"]
-
-CMD ["--conf-path=/aria2/config/aria2.conf"]
-
+ENTRYPOINT [ "sh", "/aria2/start.sh" ]
