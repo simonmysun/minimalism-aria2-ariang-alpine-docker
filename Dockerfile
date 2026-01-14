@@ -27,6 +27,6 @@ RUN wget --no-check-certificate https://github.com/mayswind/AriaNg/releases/down
   && rm ariang.zip \
   && chmod -R 755 ./
 
-RUN echo -e '#!/bin/sh\n\nwhile true; do (echo -e "HTTP/1.1 200 OK\\n\\n"; cat index.html) | nc -l -p 6880; done & aria2c --conf-path=/aria2/config/aria2.conf & wait -n; echo FAIL; exit 1' > /aria2/start.sh && chmod +x /aria2/start.sh
+RUN echo -e '#!/bin/sh\n\nwhile true; do (echo -e "HTTP/1.1 200 OK\\r\\nContent-Type: text/html; charset=utf-8\\r\\n\\r\\n"; cat index.html) | nc -l -p 6880; done & aria2c --conf-path=/aria2/config/aria2.conf & wait -n; echo FAIL; exit 1' > /aria2/start.sh && chmod +x /aria2/start.sh
 
 ENTRYPOINT [ "sh", "/aria2/start.sh" ]
